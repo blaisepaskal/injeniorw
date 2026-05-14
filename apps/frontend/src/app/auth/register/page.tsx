@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -24,7 +24,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-export default function RegisterPage() {
+function RegisterForm() {
   const router       = useRouter()
   const searchParams = useSearchParams()
   const { register: registerUser, isLoading } = useAuthStore()
@@ -71,8 +71,8 @@ export default function RegisterPage() {
         {/* Role selector */}
         <div className="grid grid-cols-2 gap-3 mb-8">
           {[
-            { role: 'ENGINEER' as const, label: 'I\'m an Engineer', desc: 'Find projects & contracts', Icon: HardHat },
-            { role: 'CLIENT' as const, label: 'I\'m Hiring', desc: 'Post jobs & find talent', Icon: Building2 },
+            { role: 'ENGINEER' as const, label: "I'm an Engineer", desc: 'Find projects & contracts', Icon: HardHat },
+            { role: 'CLIENT' as const, label: "I'm Hiring", desc: 'Post jobs & find talent', Icon: Building2 },
           ].map(({ role, label, desc, Icon }) => (
             <button
               key={role}
@@ -180,5 +180,13 @@ export default function RegisterPage() {
         </p>
       </div>
     </div>
+  )
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
   )
 }

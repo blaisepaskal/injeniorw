@@ -1,6 +1,12 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Providers } from '@/components/layout/Providers'
 import '@/styles/globals.css'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#1f9963',
+}
 
 export const metadata: Metadata = {
   title: {
@@ -24,8 +30,6 @@ export const metadata: Metadata = {
     title: 'InjenioRw',
     description: 'Rwanda\'s premier engineering talent marketplace.',
   },
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#1f9963',
 }
 
 export default function RootLayout({
