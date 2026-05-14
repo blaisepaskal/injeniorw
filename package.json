@@ -1,0 +1,18 @@
+{
+  "name": "injeniorw",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"yarn workspace @injeniorw/frontend dev\" \"yarn workspace @injeniorw/backend dev\"",
+    "build": "yarn workspace @injeniorw/frontend build && yarn workspace @injeniorw/backend build",
+    "frontend": "yarn workspace @injeniorw/frontend dev",
+    "backend": "yarn workspace @injeniorw/backend dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
