@@ -272,7 +272,7 @@ export interface PaginatedResponse<T> {
 
 // ─── UI helpers ───────────────────────────────────────────────
 
-export const DISCIPLINE_LABELS: Record<Discipline, string> = {
+export const DISCIPLINE_LABELS: Record<string, string> = {
   CIVIL:          'Civil Engineering',
   STRUCTURAL:     'Structural Engineering',
   MECHANICAL:     'Mechanical Engineering',
@@ -288,7 +288,7 @@ export const DISCIPLINE_LABELS: Record<Discipline, string> = {
   OTHER:          'Other',
 }
 
-export const EXPERIENCE_LABELS: Record<ExperienceLevel, string> = {
+export const EXPERIENCE_LABELS: Record<string, string> = {
   JUNIOR: 'Junior (0–2 years)',
   MID:    'Mid-level (3–5 years)',
   SENIOR: 'Senior (6–10 years)',
