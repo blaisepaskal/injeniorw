@@ -170,8 +170,17 @@ export const paymentsApi = {
 export const messagesApi = {
   get:       (contractId: string, cursor?: string) =>
                api.get(`/messages/contracts/${contractId}`, { params: { cursor } }),
+  send:      (contractId: string, content: string) =>
+               api.post(`/messages/contracts/${contractId}/send`, { content }),
   markRead:  (contractId: string)             => api.post(`/messages/contracts/${contractId}/read`),
   unread:    ()                               => api.get('/messages/unread-count'),
+}
+
+export const reviewsApi = {
+  create:      (data: any)            => api.post('/reviews', data),
+  forContract: (contractId: string)   => api.get(`/reviews/contract/${contractId}`),
+  forEngineer: (profileId: string)    => api.get(`/reviews/engineer/${profileId}`),
+  canReview:   (contractId: string)   => api.get(`/reviews/can-review/${contractId}`),
 }
 
 export const notificationsApi = {

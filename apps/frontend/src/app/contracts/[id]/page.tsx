@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   ChevronLeft, CheckCircle, Clock, DollarSign,
-  AlertCircle, Send, MessageSquare, Award, ChevronRight,
+  AlertCircle, Send, MessageSquare, Award, ChevronRight, Star,
 } from 'lucide-react'
 import { useContract } from '@/hooks'
 import { contractsApi, paymentsApi } from '@/lib/api'
@@ -14,7 +14,7 @@ import { Navbar } from '@/components/layout/Navbar'
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
-import { useQueryClient } from '@tanstack/react-query'
+
 import type { MilestoneStatus } from '@/types'
 
 const MILESTONE_STYLES: Record<MilestoneStatus, string> = {
@@ -39,7 +39,6 @@ export default function ContractDetailPage() {
   const params = useParams()
   const router = useRouter()
   const { user } = useAuthStore()
-  const qc = useQueryClient()
 
   const { data, isLoading, refetch } = useContract(params.id as string)
 
@@ -270,6 +269,15 @@ export default function ContractDetailPage() {
               >
                 <CheckCircle size={16} /> Mark Contract Complete
               </button>
+            )}
+
+            {contract.status === 'COMPLETED' && (
+              <Link
+                href={`/reviews/${contract.id}`}
+                className="btn-ghost w-full justify-center gap-2 mt-2"
+              >
+                <Star size={15} /> Leave a Review
+              </Link>
             )}
           </div>
         </div>
