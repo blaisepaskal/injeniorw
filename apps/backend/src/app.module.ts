@@ -13,31 +13,24 @@ import { ContractsModule } from './contracts/contracts.module'
 import { PaymentsModule } from './payments/payments.module'
 import { MessagesModule } from './messages/messages.module'
 import { NotificationsModule } from './notifications/notifications.module'
+import { AdminModule } from './admin/admin.module'
+import { ReviewsModule } from './reviews/reviews.module'
 import { appConfig } from './config/app.config'
 
 @Module({
   imports: [
-    // Config — available everywhere
     ConfigModule.forRoot({
       isGlobal: true,
       load: [appConfig],
       envFilePath: ['.env.local', '.env'],
     }),
-
-    // Rate limiting
     ThrottlerModule.forRoot([
       { name: 'short',  ttl: 1000,  limit: 10 },
       { name: 'medium', ttl: 10000, limit: 100 },
       { name: 'long',   ttl: 60000, limit: 1000 },
     ]),
-
-    // Cron jobs
     ScheduleModule.forRoot(),
-
-    // Database
     PrismaModule,
-
-    // Feature modules
     AuthModule,
     UsersModule,
     EngineersModule,
@@ -48,6 +41,8 @@ import { appConfig } from './config/app.config'
     PaymentsModule,
     MessagesModule,
     NotificationsModule,
+    AdminModule,
+    ReviewsModule,
   ],
 })
 export class AppModule {}

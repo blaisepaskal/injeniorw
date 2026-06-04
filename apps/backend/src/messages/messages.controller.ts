@@ -20,6 +20,16 @@ export class MessagesController {
     return this.messagesService.getContractMessages(contractId, req.user.id, cursor)
   }
 
+  @Post('contracts/:contractId/send')
+  @ApiOperation({ summary: 'Send a message via REST (WebSocket fallback)' })
+  sendMessage(
+    @Param('contractId') contractId: string,
+    @Body('content') content: string,
+    @Request() req: any,
+  ) {
+    return this.messagesService.sendMessage(contractId, req.user.id, content)
+  }
+
   @Post('contracts/:contractId/read')
   @ApiOperation({ summary: 'Mark all messages in contract as read' })
   markRead(@Param('contractId') contractId: string, @Request() req: any) {
